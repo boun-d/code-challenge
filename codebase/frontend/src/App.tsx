@@ -1,20 +1,18 @@
-import { useState } from 'react'
+import { ApolloProvider } from '@apollo/client'
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { client } from './apollo'
+import Accounts from './pages/Accounts'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <div className="App">
-      <h1>Vite + React</h1>
-      <div>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-    </div>
+    <ApolloProvider client={client}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Accounts />} />
+          <Route path="/*" element={<Navigate to="/" />} />
+        </Routes>
+      </BrowserRouter>
+    </ApolloProvider>
   )
 }
 
