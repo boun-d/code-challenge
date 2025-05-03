@@ -6,13 +6,13 @@ import { GraphqlContext } from './types';
 
 
 export const context: ContextFunction<[{ req: Request }], GraphqlContext> = async ({ req }) => {
-  const token = 'dummy-token'; // TODO: Implement proper token generation
+  const token = 'dummy-token'; // Implement proper token fetching/generation
   const baseURL = process.env.BASE_URL;
 
   return {
     dataSources: {
-      accountsDataSource: new AccountsDataSource(process.env.ACCOUNTS_API_URL || '', token),
-      chargesDataSource: new ChargesDataSource(process.env.CHARGES_API_URL || '', token)
+      accountsDataSource: new AccountsDataSource(baseURL!, token),
+      chargesDataSource: new ChargesDataSource(baseURL!, token)
     }
   };
 };
