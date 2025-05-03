@@ -1,0 +1,13 @@
+{
+  "name": "monolith-project",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "yarn@4.9.1",
+  "workspaces": [
+    "frontend",
+    "server"
+  ],
+  "scripts": {
+    "start": "yarn workspaces foreach -vip --all run start"
+  }
+}
