@@ -1,7 +1,7 @@
 import { RESTDataSource, AugmentedRequest } from "@apollo/datasource-rest";
 import { MOCK_DUE_CHARGES_API } from "./__mocks__/dueChargesAPIMock";
 
-export interface Charge {
+export type Charge = {
   id: string;
   accountId: string;
   date: string;
@@ -31,6 +31,21 @@ export class ChargesDataSource extends RESTDataSource {
   async getCharge(id: string): Promise<Charge | undefined> {
     return MOCK_DUE_CHARGES_API()
       .then((charges) => charges.find((charge) => charge.id === id))
+      .then((charge) => {
+        if (!charge) {
+          throw new Error('Charge not found');
+        }
+        return charge;
+      })
+      .catch((e) => {
+        //handle error
+        throw e;
+      });
+  }
+
+  async getChargesByAccountId(accountId: string): Promise<Charge[]> {
+    return MOCK_DUE_CHARGES_API()
+      .then((charges) => charges.filter((charge) => charge.accountId === accountId))
       .catch((e) => {
         //handle error
         throw e;

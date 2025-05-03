@@ -57,7 +57,7 @@ const accounts = [
     },
 ];
 
-export function MOCK_ENERGY_ACCOUNTS_API(): Promise<Account[]> {
+export function MOCK_ENERGY_ACCOUNTS_API(): Promise<Omit<Account, 'balance' | 'charges'>[]> {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(accounts);

@@ -1,7 +1,8 @@
 import { RESTDataSource, AugmentedRequest } from '@apollo/datasource-rest';
 import { MOCK_ENERGY_ACCOUNTS_API } from './__mocks__/energyAccountsAPIMock';
+import { Charge } from './charges.datasource';
 
-export interface Account {
+export type Account = {
   id: string;
   type: string;
   address: string;
@@ -29,12 +30,28 @@ export class AccountsDataSource extends RESTDataSource {
     });
   }
 
-  async getAccount(id: string): Promise<Account | undefined> {
+  async getAccount(id: string): Promise<Account> {
     return MOCK_ENERGY_ACCOUNTS_API()
       .then((accounts) => accounts.find((account) => account.id === id))
+      .then((account) => {
+        if (!account) {
+          throw new Error('Account not found');
+        }
+        return account;
+      })
       .catch((e) => {
         //handle error
         throw e;
       });
+  }
+
+  async makePayment(accountId: string, charge: Charge): Promise<Account> {
+    // Verify payment was made on client side
+    if (false) {
+      throw new Error('Payment failed');
+      
+    }
+    return await this.getAccount(accountId);
+    // Add actual payment processing logic here
   }
 } 

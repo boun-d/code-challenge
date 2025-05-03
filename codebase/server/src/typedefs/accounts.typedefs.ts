@@ -6,9 +6,16 @@ type Query {
 
   type Account {
     id: ID!
-    type: String!
+    type: AccountType!
     address: String!
     meterNumber: String
     volume: Int
+    balance: Float!
+    charges: [Charge!]!
+  }
+
+  enum AccountType {
+    ELECTRICITY
+    GAS
   }
 `; 
