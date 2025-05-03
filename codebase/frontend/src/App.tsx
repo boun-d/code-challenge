@@ -1,7 +1,7 @@
-import { ApolloProvider } from '@apollo/client'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { client } from './apollo'
-import Accounts from './pages/Accounts'
+import { ApolloProvider } from "@apollo/client";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { client } from "./apollo";
+import { Accounts } from "./pages/Accounts";
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
-  )
+  );
 }
 
-export default App 
+export default App;
