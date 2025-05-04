@@ -1,7 +1,8 @@
 import { ApolloProvider } from "@apollo/client";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { client } from "./apollo";
 import { Accounts } from "./pages/Accounts";
+import { ChargeHistory } from "./pages/ChargeHistory";
 
 function App() {
   return (
@@ -9,7 +10,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Accounts />} />
-          <Route path="/*" element={<Navigate to="/" />} />
+          <Route path="/charge-history/:accountId" element={<ChargeHistory />} />
         </Routes>
       </BrowserRouter>
     </ApolloProvider>
