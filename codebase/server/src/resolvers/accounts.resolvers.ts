@@ -12,7 +12,7 @@ export const accountsResolvers = {
   Mutation: {
     makePayment: async (_: any, { accountId, amount }: { accountId: string, amount: number }, { dataSources }: GraphqlContext) => {
       const charge = {
-        id: '1',
+        id: 'new-charge-id', // TODO Generate proper unique charge id
         accountId,
         amount: amount,
         date: new Date().toISOString().split('T')[0]
