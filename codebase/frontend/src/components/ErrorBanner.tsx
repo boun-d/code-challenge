@@ -1,4 +1,5 @@
 export const ErrorBanner = () => {
-  // TODO: Add an error banner
+  // TODO Add error details
+  // TODO Add a retry button with the refetch function
   return <div>Error</div>;
 };
