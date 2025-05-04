@@ -8,6 +8,8 @@ export const accountsResolvers = {
     getAccount: async (_: any, { id }: { id: string }, { dataSources }: GraphqlContext) => {
       return dataSources.accountsDataSource.getAccount(id);
     },
+  },
+  Mutation: {
     makePayment: async (_: any, { accountId, amount }: { accountId: string, amount: number }, { dataSources }: GraphqlContext) => {
       const charge = {
         id: '1',

@@ -25,7 +25,7 @@ export class AccountsDataSource extends RESTDataSource {
 
   async getAccounts(): Promise<Account[]> {
     return MOCK_ENERGY_ACCOUNTS_API().catch((e) => {
-      //handle error
+      // TODO handle error
       throw e;
     });
   }
@@ -40,18 +40,25 @@ export class AccountsDataSource extends RESTDataSource {
         return account;
       })
       .catch((e) => {
-        //handle error
+        // TODO handle error
         throw e;
       });
   }
 
   async makePayment(accountId: string, charge: Charge): Promise<Account> {
-    // Verify payment was made on client side
+    // TODO Verify payment was made on client side
     if (false) {
       throw new Error('Payment failed');
       
     }
+
+    // TODO Add charge to account
+
+    // Simulate payment processing time
+    await new Promise(resolve => setTimeout(() => {
+      resolve(true);
+    }, 1000));
+
     return await this.getAccount(accountId);
-    // Add actual payment processing logic here
   }
 } 

@@ -2,6 +2,9 @@ export const accountsTypeDefs = `#graphql
 type Query {
     getAccounts: [Account!]!
     getAccount(id: ID!): Account
+  }
+
+  type Mutation {
     makePayment(accountId: ID!, amount: Float!): Account
   }
 
