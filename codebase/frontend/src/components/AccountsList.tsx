@@ -9,18 +9,17 @@ import { useMemo } from "react";
 export const AccountsList: React.FC = () => {
   const { loading, error, data } = useQuery(GET_ACCOUNTS);
 
-  const [addressFilter, setAddressFilter] = useState("");
-
+  const [typeFilter, setTypeFilter] = useState<"ELECTRICITY" | "GAS" | undefined>();
 
   const accounts = useMemo(() =>{
     const accounts = data?.getAccounts ?? []
-    if (addressFilter) {
+    if (typeFilter) {
         return accounts.filter((account) =>
-            account.address.toLowerCase().includes(addressFilter.toLowerCase())
+            account.type === typeFilter
         );
     }
     return accounts;
-}, [data, addressFilter]);
+}, [data, typeFilter]);
 
 if (loading) return <LoadingSpinner />;
 if (error) return <ErrorBanner />;
@@ -28,12 +27,16 @@ if (error) return <ErrorBanner />;
   return (
     <>
       <div className="mb-4">
-        <input
-          type="text"
-          placeholder="Filter by address..."
-          className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
-          onChange={(e) => setAddressFilter(e.target.value)}
-        />
+        <select
+          className="p-2 border rounded"
+          value={typeFilter}
+          onChange={(e) => setTypeFilter(e.target.value as "ELECTRICITY" | "GAS" | undefined)}
+          data-testid="account-type-filter"
+        >
+          <option value={undefined}>All Types</option>
+          <option value="ELECTRICITY">Electricity</option>
+          <option value="GAS">Gas</option>
+        </select>
       </div>
       {accounts.map((account) => (
         <AccountCard key={account.id} account={account} />
