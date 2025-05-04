@@ -22,6 +22,7 @@ export const Modal: React.FC<ModalProps> = ({ title, onClose, children }) => {
 
         {onClose && (
           <button
+            data-testid="close-button"
             onClick={onClose}
             className="absolute top-2 right-2 text-white hover:text-gray-200 hover:cursor-pointer"
           >

@@ -11,8 +11,6 @@ export const AccountsList: React.FC = () => {
 
   const [addressFilter, setAddressFilter] = useState("");
 
-  if (loading) return <LoadingSpinner />;
-  if (error) return <ErrorBanner />;
 
   const accounts = useMemo(() =>{
     const accounts = data?.getAccounts ?? []
@@ -23,6 +21,9 @@ export const AccountsList: React.FC = () => {
     }
     return accounts;
 }, [data, addressFilter]);
+
+if (loading) return <LoadingSpinner />;
+if (error) return <ErrorBanner />;
 
   return (
     <>

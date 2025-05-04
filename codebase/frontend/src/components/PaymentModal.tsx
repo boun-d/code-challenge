@@ -24,8 +24,8 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
   const onSubmit = (amount: number, cardNumber: string, expiryDate: string, cvv: string) => {
     // TODO Validate inputs
     // TODO Verify payment details
-
     console.log('Verifying payment details: ', amount, cardNumber, expiryDate, cvv);
+
     makePayment({ variables: { accountId: account.id, amount } });
   }
 
@@ -39,6 +39,7 @@ export const PaymentModal: React.FC<PaymentModalProps> = ({
       <form
         onSubmit={() => onSubmit(amount, cardNumber, expiryDate, cvv)}
         className="space-y-6"
+        data-testid="payment-modal"
       >
         <div className="text-center mb-6">
           <p className="text-gray-600">

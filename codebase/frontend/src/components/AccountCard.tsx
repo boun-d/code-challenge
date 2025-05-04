@@ -26,6 +26,8 @@ export const AccountCard: React.FC<AccountCardProps> = ({ account }) => {
           </h2>
         </div>
 
+        {/* TODO Add volume and meter number info based on type*/}
+
         {/* Card Content */}
         <div className="p-4">
           <div className="space-y-3">
@@ -44,12 +46,14 @@ export const AccountCard: React.FC<AccountCardProps> = ({ account }) => {
               </div>
               <div className="flex flex-grow"></div>
               <button
+                data-testid="make-payment-button"
                 className="w-32 bg-green-600 text-white py-1.5 px-3 mx-1 rounded-md hover:bg-green-700 hover:cursor-pointer transition-colors text-sm"
                 onClick={() => setIsPaymentModalOpen(true)}
               >
                 Make Payment
               </button>
               <button
+                data-testid="charge-history-button"
                 className="w-32 bg-gray-600 text-white py-1.5 px-3 mx-1 rounded-md hover:bg-gray-700 hover:cursor-pointer transition-colors text-sm"
                 onClick={() => navigateTo(`/charge-history/${account.id}`)}
               >
