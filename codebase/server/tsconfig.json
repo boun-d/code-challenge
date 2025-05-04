@@ -9,7 +9,7 @@
     "outDir": "dist",
     "rootDir": "src",
     "lib": ["ESNext", "DOM"],
-    "types": ["node"],
+    "types": ["node", "jest"],
     "allowJs": true
   },
   "include": ["src/**/*"],
